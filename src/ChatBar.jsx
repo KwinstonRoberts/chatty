@@ -14,7 +14,6 @@ class ChatBar extends Component {
   }
 
   addMessage(event) {
-
     if(event.key ==='Enter'){
       this.setState({
         value: ''
@@ -22,35 +21,32 @@ class ChatBar extends Component {
       this.props.addMessage(this.state.value);
     }else{
       this.setState({
-        value: event.target.value + event.key
+        value: event.target.value
       });
     }
   }
-
   changeUser(event) {
-
     if(event.key ==='Enter'){
       var oldUser = this.props.currentUser;
       this.props.changeUser({
         oldUser: oldUser,
-        newUser: this.state.user});
+        newUser: this.state.user
+      });
     }else{
       this.setState({
-        user: event.target.value + event.key
+        user: event.target.value
       });
     }
   }
 
   render() {
     return (
-
-          <footer className="chatbar">
-              <input className="chatbar-username" placeholder={this.props.currentUser} onKeyDown={this.changeUser} />
-              <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyDown={this.addMessage}/>
-          </footer>
-
-      );
-   }
+      <footer className="chatbar">
+        <input className="chatbar-username" placeholder={this.props.currentUser} onKeyUp={this.changeUser} />
+        <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyUp={this.addMessage}/>
+      </footer>
+    );
+  }
 }
 ChatBar.propTypes = {
   currentUser: React.PropTypes.string,

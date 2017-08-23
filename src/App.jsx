@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import ChatBar from './ChatBar.jsx';
-
 import MessageList from './MessageList.jsx';
 
 
@@ -26,31 +24,27 @@ class App extends Component {
       notification: ''
     };
   }
-  // in App.jsx
   componentDidMount() {
-    setTimeout(() => {
-      // Create the WebSockets server
-      this.socket = new WebSocket(
-        'ws://localhost:3001'
-      );
-
-      this.socket.onmessage = function(event) {
-        var data = JSON.parse(event.data);
-        if(data.type==='incomingMessage'){
-          this.setState({
-            messages: data.messages
-          });
-        }else if(data.type==='incomingNotification'){
-          this.setState({
-            notification: data.content
-          });
-        }else if(data.type==='usersOnline'){
-          this.setState({
-            online: data.online,
-          });
-        }
-      }.bind(this);
-    }, 200);
+    // Create the WebSockets server
+    this.socket = new WebSocket(
+      'ws://localhost:3001'
+    );
+    this.socket.onmessage = function(event) {
+      var data = JSON.parse(event.data);
+      if(data.type==='incomingMessage'){
+        this.setState({
+          messages: data.messages
+        });
+      }else if(data.type==='incomingNotification'){
+        this.setState({
+          notification: data.content
+        });
+      }else if(data.type==='usersOnline'){
+        this.setState({
+          online: data.online,
+        });
+      }
+    }.bind(this);
   }
   addMessage(content) {
     var username = this.state.currentUser.name;

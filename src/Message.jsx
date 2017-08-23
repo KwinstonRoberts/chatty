@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class Message extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +16,7 @@ class Message extends Component {
                  <span className="message-content"><div dangerouslySetInnerHTML={{__html: message.content.replace(/((http){1}[s]?(:\/\/){1}[a-z0-9\/.-]+(.jpg|.jpeg|.png|.gif))/gi, '<br><img width=\'60%\' src="$1"/>')}} /></span>
             </div>
     });
-    return <div>{
-      messageList
-      }</div>
+    return <div>{messageList}</div>
   }
 }
 Message.propTypes = {
