@@ -8,29 +8,11 @@ class ChatBar extends Component {
       user: '',
       value: '',
       messages: this.props.messages
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onChangeUser = this.onChangeUser.bind(this);
-
+    }
     this.addMessage = this.addMessage.bind(this);
     this.changeUser = this.changeUser.bind(this);
   }
 
-  onChange(event) {
-
-      console.log(event.target.value);
-        this.setState({
-          value: event.target.value
-        });
-
-    }
-    onChangeUser(event) {
-        console.log(event.target.value);
-          this.setState({
-            user: event.target.value
-          });
-
-      }
   addMessage(event) {
 
     if(event.key ==='Enter'){
@@ -38,16 +20,24 @@ class ChatBar extends Component {
         value: ''
       })
       this.props.addMessage(this.state.value);
-
+    }else{
+      this.setState({
+        value: event.target.value + event.key
+      });
     }
   }
 
   changeUser(event) {
+
     if(event.key ==='Enter'){
       var oldUser = this.props.currentUser;
       this.props.changeUser({
         oldUser: oldUser,
         newUser: this.state.user});
+    }else{
+      this.setState({
+        user: event.target.value + event.key
+      });
     }
   }
 
@@ -55,8 +45,8 @@ class ChatBar extends Component {
     return (
 
           <footer className="chatbar">
-              <input className="chatbar-username" placeholder={this.props.currentUser} onChange={this.onChangeUser} onKeyPress={this.changeUser} />
-              <input className="chatbar-message" placeholder="Type a message and hit ENTER" value={this.state.value} onChange={this.onChange} onKeyPress={this.addMessage}/>
+              <input className="chatbar-username" placeholder={this.props.currentUser} onKeyDown={this.changeUser} />
+              <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyDown={this.addMessage}/>
           </footer>
 
       );
@@ -65,6 +55,8 @@ class ChatBar extends Component {
 ChatBar.propTypes = {
   currentUser: React.PropTypes.string,
   messages: React.PropTypes.array,
-  user: React.PropTypes.string
+  user: React.PropTypes.string,
+  addMessage:React.PropTypes.func,
+  changeUser:React.PropTypes.func
 };
 export default ChatBar;

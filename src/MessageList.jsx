@@ -22,6 +22,7 @@ class MessageList extends Component {
 }
 MessageList.propTypes = {
   messages: React.PropTypes.array,
-  color:React.PropTypes.string
+  color:React.PropTypes.string,
+  notification:React.PropTypes.string
 };
 export default MessageList;

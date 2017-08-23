@@ -51,7 +51,7 @@ class App extends Component {
         }
       }.bind(this);
     }, 200);
-}
+  }
   addMessage(content) {
     var username = this.state.currentUser.name;
     this.socket.send(JSON.stringify({

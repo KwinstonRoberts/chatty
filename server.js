@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
-var ws = require('ws')
+
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   watchOptions: {
@@ -10,7 +10,7 @@ new WebpackDevServer(webpack(config), {
     ignored: /node_modules/
   }
 })
-  .listen(3000, '0.0.0.0', function(err, result) {
+  .listen(3000, '0.0.0.0', function(err) {
     if (err) {
       console.log(err);
     }
