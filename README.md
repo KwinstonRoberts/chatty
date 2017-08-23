@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-
-###chatty
-
-
-A small chat app s,that accepts some image types, and exercises anonymity through randomized sessions and mutable names, and colour-coding to keep track of who's saying what during a session.
-=======
 ### Chatty
 
 
